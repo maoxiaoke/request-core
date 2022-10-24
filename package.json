@@ -1,0 +1,48 @@
+{
+  "name": "@ub/request-core",
+  "version": "1.0.0",
+  "description": "@ub/request-core",
+  "files": [
+    "esm",
+    "cjs",
+    "dist",
+    "build"
+  ],
+  "module": "esm/index.js",
+  "exports": "./esm/index.js",
+  "sideEffects": [
+    "dist/*"
+  ],
+  "types": "./esm/index.d.ts",
+  "scripts": {
+    "start": "bell-pkg start",
+    "build": "bell-pkg build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build && npm run coverage",
+    "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./",
+    "eslint:fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint \"**/*.{css,scss,less}\"",
+    "lint": "npm run eslint && npm run stylelint"
+  },
+  "keywords": [
+    "bell",
+    "web",
+    "library"
+  ],
+  "devDependencies": {
+    "@iceworks/spec": "^1.0.0",
+    "@swc/helpers": "^0.4.11",
+    "@ub/bell-pkg": "^1.0.0",
+    "@vitest/coverage-c8": "^0.22.1",
+    "core-js": "^3.25.0",
+    "eslint": "^7.0.0",
+    "jsdom": "^20.0.0",
+    "stylelint": "^13.7.2",
+    "vitest": "^0.22.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

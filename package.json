@@ -41,6 +41,11 @@
     "stylelint": "^13.7.2",
     "vitest": "^0.22.1"
   },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.15.x"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

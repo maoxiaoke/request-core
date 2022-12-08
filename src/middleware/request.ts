@@ -1,7 +1,7 @@
-/* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import type { Middleware, Req } from '../types';
 
-// 这个内置插件的作用
+// This builtin middleware is used to turn all request parmeters into a Request object
+// This is the same as using `fetch` directly
 const requestHandler: Middleware = (next) => async (req) => {
   const { url } = req;
 

@@ -1,18 +1,22 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import type { Req } from '../types';
 
-export const getRequestObject = (url: string, requestOptoin: Partial<Req>) => {
-  const request = new Request(url, requestOptoin);
+export const getRequestObject = <T extends Req>(url: string, requestOption: Partial<T>) => {
+  const request = new Request(url, requestOption);
 
-  const _req: Req = {};
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  const _req: T = {} as T;
 
-  // FXIME: 应该传递哪些内容，需要再确认一下
   for (const key in request) {
-    _req[key] = request[key];
+    if (Object.prototype.hasOwnProperty.call(request, key)) {
+      if (key === 'body' || key === 'url') {
+        _req.body = requestOption?.body;
+        continue;
+      }
+
+      _req[key] = request[key];
+    }
   }
-
-  _req.url = url;
-
 
   return _req;
 };

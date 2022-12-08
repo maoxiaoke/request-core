@@ -1,4 +1,5 @@
 import type { Middleware } from '../types';
+import type { ExtendReq, ExtendRes } from '../index';
 
 export const isNullable = (val: unknown) => {
   return val === null || val === undefined;
@@ -18,9 +19,13 @@ export const genQueryString = (querys: Record<string, any>) => {
   return '';
 };
 
+const queryHandler: Middleware<ExtendReq, ExtendRes> = (next) => async (req) => {
+  const { query, url } = req;
 
-// 这个内置插件的作用
-const queryHandler: Middleware = (next) => async (req) => {
+  if (query) {
+    req.url = url + genQueryString(query);
+  }
+
   return await next(req);
 };
 

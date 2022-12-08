@@ -3,53 +3,44 @@ import { fetch } from '../adaptor/fetch';
 import { requestHandler } from '../middleware/request';
 import { getRequestObject } from '../helpers/genRequestObject';
 
-import type { Middleware, Req } from '../types';
+import type { Middleware, Req, Res } from '../types';
 
-type ParticalReq = Partial<Req>;
+const toArray = <T>(arg: T | T[]): T[] => (Array.isArray(arg) ? arg : [arg]);
 
-class Core {
+class Core <T extends Req = Req, U extends Res = Res> {
   private middleware: Middleware[] = [requestHandler];
-  private option: RequestInit = {};
-
-  constructor(options: RequestInit) {
-    this.option = options; // FIXME: 这需要这个配置吗
-  }
 
   use(middleware: Middleware[] | Middleware) {
-    this.middleware = Array.isArray(middleware) ? middleware.concat(this.middleware) : [...middleware, ...this.middleware];
+    this.middleware = toArray(middleware).concat(this.middleware);
   }
 
-  request(url: string, options: ParticalReq = {}) {
+  request(url: string, options: Partial<T>): Promise<U> {
     const dispatch = compose(...this.middleware);
-    return dispatch(window.fetch)(getRequestObject(url, options));
+    return dispatch(fetch)(getRequestObject(url, options));
   }
 
-  get(url: string, options: ParticalReq = {}) {
-    return this.request(url, {
-      ...options,
-      method: 'GET',
-    });
+  get(url: string, options?: Partial<T>) {
+    return this.request(url, { ...options, method: 'GET' });
   }
 
-  post(url: string, options: ParticalReq = {}) {
-    return this.request(url, {
-      ...options,
-      method: 'POST',
-    });
+  post(url: string, options: Partial<T>) {
+    return this.request(url, { ...options, method: 'POST' });
   }
 
-  put(url: string, options: ParticalReq = {}) {
-    return this.request(url, {
-      ...options,
-      method: 'PUT',
-    });
+  put(url: string, options: Partial<T>) {
+    return this.request(url, { ...options, method: 'PUT' });
   }
 
-  delete(url: string, options: ParticalReq = {}) {
-    return this.request(url, {
-      ...options,
-      method: 'DELETE',
-    });
+  delete(url: string, options: Partial<T>) {
+    return this.request(url, { ...options, method: 'DELETE' });
+  }
+
+  head(url: string, options: Partial<T>) {
+    return this.request(url, { ...options, method: 'HEAD' });
+  }
+
+  patch(url: string, options: Partial<T>) {
+    return this.request(url, { ...options, method: 'PATCH' });
   }
 }
 

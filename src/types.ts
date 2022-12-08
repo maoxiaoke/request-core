@@ -1,6 +1,6 @@
-export type Next = (request: Req) => Promise<Res>;
+export type Next<T extends Req = Req, U extends Res = Res> = (request: T) => Promise<U>;
 
-export type Middleware = (next: Next) => Next;
+export type Middleware<T extends Req = Req, U extends Res = Res> = (next: Next<T, U>) => Next<T, U>;
 
 /**
  * Make request is writable
@@ -19,6 +19,7 @@ export interface WriteRequest {
   referrerPolicy: ReferrerPolicy;
   signal: AbortSignal;
   url: string;
+  body: BodyInit;
 }
 
 export interface Req extends WriteRequest {
@@ -29,14 +30,10 @@ export interface Req extends WriteRequest {
    */
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD' | 'PATCH';
   /**
-   * timeout in ms
+   * timeout in ms, not implemented yet
    */
   timeout?: number;
 
-  query?: Record<string, string | number | boolean>;
-
-  // FIXME: 这里怎么通过插件的方式提供
-  baseUrl?: string;
 }
 
 export type Res = Response;

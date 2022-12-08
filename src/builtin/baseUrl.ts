@@ -1,9 +1,9 @@
 import type { Middleware } from '../types';
+import type { ExtendReq, ExtendRes } from '../index';
 
-const baseUrlHandler: Middleware = (next) => async (req) => {
+const baseUrlHandler: Middleware<ExtendReq, ExtendRes> = (next) => async (req) => {
   const { url, baseUrl } = req;
 
-  // FIXME: 这里代码写详细点
   if (!url.startsWith('http') && baseUrl) {
     req.url = baseUrl + url;
   }

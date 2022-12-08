@@ -1,0 +1,37 @@
+{
+  "name": "@ub/uxp-request",
+  "version": "0.0.4",
+  "description": "A request library for UXP, based on request-core",
+  "module": "esm/index.js",
+  "exports": "./esm/index.js",
+  "sideEffects": [
+    "dist/*"
+  ],
+  "types": "./esm/index.d.ts",
+  "files": [
+    "esm",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bell-pkg build"
+  },
+  "author": "nazha",
+  "license": "MTI",
+  "dependencies": {
+    "@ub/request-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@ub/bell-pkg": "^1.0.0",
+    "antd": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "antd": "^4.0.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

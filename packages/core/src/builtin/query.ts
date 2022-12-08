@@ -1,5 +1,8 @@
-import type { Middleware } from '../types';
-import type { ExtendReq, ExtendRes } from '../index';
+import type { Middleware, Req } from '../types';
+
+interface QueryMiddlewareReq extends Req {
+  query?: Record<string, any>;
+}
 
 export const isNullable = (val: unknown) => {
   return val === null || val === undefined;
@@ -19,7 +22,11 @@ export const genQueryString = (querys: Record<string, any>) => {
   return '';
 };
 
-const queryHandler: Middleware<ExtendReq, ExtendRes> = (next) => async (req) => {
+interface QueryMiddlewareReq extends Req {
+  query?: Record<string, any>;
+}
+
+const queryHandler = <T extends QueryMiddlewareReq>(): Middleware<T> => (next) => async (req) => {
   const { query, url } = req;
 
   if (query) {

@@ -3,7 +3,6 @@ import fetch, { Request } from 'cross-fetch';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import Core from '../src/core/index.js';
-import uxpRequest from '../src/index.js';
 
 global.fetch = fetch;
 global.Request = Request;

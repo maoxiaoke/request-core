@@ -1,4 +1,4 @@
-import type { Middleware } from '../types';
+import type { Middleware } from '@ub/request-core';
 
 const authHandler: Middleware = (next) => async (req) => {
   const { url } = req;

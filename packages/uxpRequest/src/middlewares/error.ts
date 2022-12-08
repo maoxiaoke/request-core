@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import type { Middleware } from '../types';
+import type { Middleware } from '@ub/request-core';
 
 const errorHandler: Middleware = (next) => async (req) => {
   const response = await next(req);

@@ -2,6 +2,8 @@ export type Next<T extends Req = Req, U extends Res = Res> = (request: T) => Pro
 
 export type Middleware<T extends Req = Req, U extends Res = Res> = (next: Next<T, U>) => Next<T, U>;
 
+export type MiddlewareWithOption<O, T extends Req = Req, U extends Res = Res> = (option: O) => Middleware<T, U>;
+
 /**
  * Make request is writable
  */

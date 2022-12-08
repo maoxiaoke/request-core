@@ -11,6 +11,7 @@ export const getRequestObject = <T extends Req>(url: string, requestOption: Part
     if (Object.prototype.hasOwnProperty.call(request, key)) {
       if (key === 'body' || key === 'url') {
         _req.body = requestOption?.body;
+        _req.url = url;
         continue;
       }
 

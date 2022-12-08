@@ -1,6 +1,6 @@
 import type { Middleware } from '../types';
 
-const jsonResponseHandler: Middleware = (next) => async (req) => {
+const jsonResponseHandler = (): Middleware => (next) => async (req) => {
   const response = await next(req);
 
   if (response.json) {

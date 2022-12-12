@@ -1,6 +1,6 @@
 {
   "name": "@ub/uxp-request",
-  "version": "0.0.4",
+  "version": "0.0.15",
   "description": "A request library for UXP, based on request-core",
   "module": "esm/index.js",
   "exports": "./esm/index.js",
@@ -18,7 +18,7 @@
   "author": "nazha",
   "license": "MTI",
   "dependencies": {
-    "@ub/request-core": "workspace:*"
+    "@ub/request-core": "^0.0.8"
   },
   "devDependencies": {
     "@ub/bell-pkg": "^1.0.0",

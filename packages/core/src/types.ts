@@ -21,7 +21,10 @@ export interface WriteRequest {
   referrerPolicy: ReferrerPolicy;
   signal: AbortSignal;
   url: string;
-  body: BodyInit;
+  /**
+   * Extend the body type to support passing in objects, but this breaks the spec of Request
+   */
+  body: BodyInit | Record<string, any>;
 }
 
 export interface Req extends WriteRequest {

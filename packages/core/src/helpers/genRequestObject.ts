@@ -8,16 +8,20 @@ export const getRequestObject = <T extends Req>(url: string, requestOption: Part
   const _req: T = {} as T;
 
   for (const key in request) {
-    if (Object.prototype.hasOwnProperty.call(request, key)) {
-      if (key === 'body' || key === 'url') {
-        _req.body = requestOption?.body;
-        _req.url = url;
-        continue;
-      }
-
-      _req[key] = request[key];
+    if (key === 'body' || key === 'url') {
+      _req.body = requestOption?.body;
+      _req.url = url;
+      continue;
     }
+
+    _req[key] = request[key];
   }
+
+  Object.keys(requestOption).forEach((key) => {
+    if (!_req.hasOwnProperty(key)) {
+      _req[key] = requestOption[key];
+    }
+  });
 
   return _req;
 };

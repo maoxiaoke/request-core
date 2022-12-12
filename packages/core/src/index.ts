@@ -1,5 +1,5 @@
 import Core from './core/index';
-export { corsHandler, jsonResponseHandler, baseUrlHandler, jsonHeaderHandler } from './builtin';
+export { corsHandler, jsonResponseHandler, baseUrlHandler, jsonHeaderHandler, queryHandler } from './builtin';
 
 export {
   Core,

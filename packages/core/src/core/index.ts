@@ -20,26 +20,26 @@ class Core <T extends Req = Req> {
   }
 
   get<U = any>(url: string, options?: Partial<T>) {
-    return this.request(url, { ...options, method: 'GET' });
+    return this.request<U>(url, { ...options, method: 'GET' });
   }
 
-  post<U = any>(url: string, options: Partial<T>) {
+  post<U = any>(url: string, options: Partial<T>): Promise<U> {
     return this.request(url, { ...options, method: 'POST' });
   }
 
-  put<U = any>(url: string, options: Partial<T>) {
+  put<U = any>(url: string, options: Partial<T>): Promise<U> {
     return this.request(url, { ...options, method: 'PUT' });
   }
 
-  delete<U = any>(url: string, options: Partial<T>) {
+  delete<U = any>(url: string, options?: Partial<T>): Promise<U> {
     return this.request(url, { ...options, method: 'DELETE' });
   }
 
-  head<U = any>(url: string, options: Partial<T>) {
+  head<U = any>(url: string, options?: Partial<T>): Promise<U> {
     return this.request(url, { ...options, method: 'HEAD' });
   }
 
-  patch<U = any>(url: string, options: Partial<T>) {
+  patch<U = any>(url: string, options?: Partial<T>): Promise<U> {
     return this.request(url, { ...options, method: 'PATCH' });
   }
 }

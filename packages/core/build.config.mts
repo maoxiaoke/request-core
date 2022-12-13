@@ -1,4 +1,4 @@
-import { defineConfig } from '@ub/bell-pkg';
+import { defineConfig } from '@ice/pkg';
 
 export default defineConfig({
 });

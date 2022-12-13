@@ -1,6 +1,7 @@
 {
-  "name": "@ub/request-core",
-  "version": "0.0.11",
+  "name": "@nzha/request-core",
+  "version": "1.0.1",
+  "author": "maoxiaoke@outlook.com",
   "description": "request-core is a library for developer to make their own request library",
   "files": [
     "esm",
@@ -13,8 +14,8 @@
   ],
   "types": "./esm/index.d.ts",
   "scripts": {
-    "start": "bell-pkg start",
-    "build": "bell-pkg build",
+    "start": "ice-pkg start",
+    "build": "ice-pkg build",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build",
@@ -24,14 +25,13 @@
     "lint": "npm run eslint && npm run stylelint"
   },
   "keywords": [
-    "bell",
+    "http client",
     "web",
     "library"
   ],
   "devDependencies": {
+    "@ice/pkg": "^1.0.0",
     "@iceworks/spec": "^1.0.0",
-    "@swc/helpers": "^0.4.11",
-    "@ub/bell-pkg": "^1.0.0",
     "@vitest/coverage-c8": "^0.22.1",
     "core-js": "^3.25.0",
     "cross-fetch": "^3.1.5",
@@ -45,5 +45,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@swc/helpers": "^0.4.14"
+  }
 }

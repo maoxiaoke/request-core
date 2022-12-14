@@ -42,7 +42,7 @@ myOwnHttpClient.get('https://api.github.com/user');
 
 ## How to use
 
-安装 request-core：
+安装 `request-core`：
 
 ```bash
 pnpm add @nzha/request-core
@@ -53,8 +53,8 @@ npm i @nzha/request-core
 `request-core` 的 api 非常少，创建你自己的请求库只需要以下以下几行代码：
 
 ```ts
-import { Core, baseUrlHandler } from 'request-core';
-import { Req } from 'request-core';
+import { Core, baseUrlHandler } from '@nzha/request-core';
+import { Req } from '@nzha/request-core';
 
 interface ExtendReq extends Req {
   // 你可以在这里扩展 Req 的类型，比如增加一些自定义参数
@@ -77,7 +77,7 @@ export {
 下面是自定义一个 `request-core` 中间件的例子。
 
 ```ts
-import { Middleware } from 'request-core';
+import { Middleware } from '@nzha/request-core';
 
 const myMiddleware: Middleware = (next) => async (req) => {
   // Do Something to change req params
@@ -133,3 +133,4 @@ myOwnRequest.get('/user', {
   },
 });
 ```
+

@@ -1,6 +1,6 @@
 {
   "name": "@nzha/request-core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "maoxiaoke@outlook.com",
   "description": "request-core is a library for developer to make their own request library",
   "files": [

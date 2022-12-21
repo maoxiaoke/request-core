@@ -6,7 +6,7 @@ interface BaseUrlMiddlewareReq extends Req {
 }
 
 interface BaseurlMiddlewareOption {
-  baseUrl: string;
+  baseUrl: string | ((req: Req) => string);
 }
 
 // This snippet is copied from https://github.com/jfromaniello/url-join/blob/main/lib/url-join.js under MIT license
@@ -75,7 +75,11 @@ const baseUrlHandler = <T extends BaseUrlMiddlewareReq> (option: BaseurlMiddlewa
   const _baseUrl = customUrl ?? baseUrl;
 
   if (!url.startsWith('http') && _baseUrl) {
-    req.url = urlJoin([_baseUrl, url]);
+    if (typeof _baseUrl === 'function') {
+      req.url = _baseUrl(req);
+    } else {
+      req.url = urlJoin([_baseUrl, url]);
+    }
   }
 
   return await next(req);

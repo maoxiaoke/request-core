@@ -72,14 +72,12 @@ const baseUrlHandler = <T extends BaseUrlMiddlewareReq> (option: BaseurlMiddlewa
   const { baseUrl } = option;
   const { url, baseUrl: customUrl } = req;
 
-  const _baseUrl = customUrl ?? baseUrl;
+  const overridedUrl = customUrl ?? baseUrl;
 
-  if (!url.startsWith('http') && _baseUrl) {
-    if (typeof _baseUrl === 'function') {
-      req.url = _baseUrl(req);
-    } else {
-      req.url = urlJoin([_baseUrl, url]);
-    }
+  if (!url.startsWith('http') && overridedUrl) {
+    req.url = typeof overridedUrl === 'function'
+      ? urlJoin([overridedUrl(req), url])
+      : urlJoin([overridedUrl, url]);
   }
 
   return await next(req);

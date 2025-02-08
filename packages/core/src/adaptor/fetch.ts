@@ -1,1 +1,1 @@
-export const fetch = window?.fetch;
+export const fetch = typeof window === "undefined" ? () => {} : window?.fetch;
